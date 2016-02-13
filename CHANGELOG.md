@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 0.2.0
 
 - Add `useCapture` argument to `createTapListener`.
 
