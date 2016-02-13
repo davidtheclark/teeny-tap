@@ -48,9 +48,10 @@ That's it. Very simple. You create and remove listeners.
 
 ### API
 
-#### `var tapListenerInstance = createTapListener(element, callback)`
+#### `var tapListenerInstance = createTapListener(element, callback[, useCapture])`
 
-Adds a tap listener on `element`. When there's a tap, `callback` is invoked with
+Adds a tap listener on `element`, using `addEventListener()`.
+When there's a tap, `callback` is invoked with
 the relevant `event` as its argument (either a `click` or `touchend` event).
 
 **Returns an object with a `remove` function, for removing the listener.**

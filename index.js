@@ -1,4 +1,4 @@
-module.exports = function createTapListener(el, callback) {
+module.exports = function createTapListener(el, callback, useCapture) {
   var startX = 0;
   var startY = 0;
   var touchStarted = false;
@@ -9,8 +9,8 @@ module.exports = function createTapListener(el, callback) {
   // twice: once on touchend, once on the subsequent "click".
   var usingTouch = false;
 
-  el.addEventListener('click', handleClick, false);
-  el.addEventListener('touchstart', handleTouchstart, false);
+  el.addEventListener('click', handleClick, useCapture);
+  el.addEventListener('touchstart', handleTouchstart, useCapture);
 
   function handleClick(e) {
     if (usingTouch) return;
@@ -23,9 +23,9 @@ module.exports = function createTapListener(el, callback) {
     if (touchStarted) return;
     touchStarted = true;
 
-    el.addEventListener('touchmove', handleTouchmove, false);
-    el.addEventListener('touchend', handleTouchend, false);
-    el.addEventListener('touchcancel', handleTouchcancel, false);
+    el.addEventListener('touchmove', handleTouchmove, useCapture);
+    el.addEventListener('touchend', handleTouchend, useCapture);
+    el.addEventListener('touchcancel', handleTouchcancel, useCapture);
 
     touchMoved = false;
     startX = e.touches[0].clientX;
@@ -59,14 +59,14 @@ module.exports = function createTapListener(el, callback) {
   }
 
   function removeSecondaryTouchListeners() {
-    el.removeEventListener('touchmove', handleTouchmove, false);
-    el.removeEventListener('touchend', handleTouchend, false);
-    el.removeEventListener('touchcancel', handleTouchcancel, false);
+    el.removeEventListener('touchmove', handleTouchmove, useCapture);
+    el.removeEventListener('touchend', handleTouchend, useCapture);
+    el.removeEventListener('touchcancel', handleTouchcancel, useCapture);
   }
 
   function removeTapListener() {
-    el.removeEventListener('click', handleClick, false);
-    el.removeEventListener('touchstart', handleTouchstart, false);
+    el.removeEventListener('click', handleClick, useCapture);
+    el.removeEventListener('touchstart', handleTouchstart, useCapture);
     removeSecondaryTouchListeners();
   }
 
