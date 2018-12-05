@@ -1,7 +1,5 @@
 # teeny-tap
 
-**Status: Experimental, Under Active Development**
-
 Listen for both clicks and click-like touches (not scrolls or drags).
 
 This library is very small and simple and focused, without any dependencies.
